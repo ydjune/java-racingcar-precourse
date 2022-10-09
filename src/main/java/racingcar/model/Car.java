@@ -39,7 +39,7 @@ public class Car {
     public static boolean validLength(String carName) {
         if (carName.length() > MAX_CAR_NAME_LENGTH) {
             OutputFunction.println("[ERROR] 자동차 이름은 5자 이하여야 합니다.");
-            throw new IllegalArgumentException("자동차 이름은 5자 이하여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 자동차 이름은 5자 이하여야 합니다.");
         }
 
         return true;

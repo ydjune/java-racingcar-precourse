@@ -14,7 +14,7 @@ public class CarTest {
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
-    private static final String ERROR_MESSAGE = "[Error]";
+    private static final String ERROR_MESSAGE = "[ERROR]";
 
     @BeforeEach
     public void setUpStreams() {
@@ -36,14 +36,23 @@ public class CarTest {
 
     @Test
     void 차이름이_5자_이상이면_false(){
-        boolean result = Car.validLength("asdfasd");
-        assertThat(result).isFalse();
+        try {
+            Car.validLength("asdfasd");
+        }catch (IllegalArgumentException e) {
+            assertThat(e).
+                    isInstanceOf(IllegalArgumentException.class);
+        }
     }
 
     @Test
     void 차이름이_5자_이상이면_Error출력(){
-        Car.validLength("asdfasd");
-        assertThat(ERROR_MESSAGE).isEqualTo(outContent.toString());
+        try {
+            Car.validLength("asdfasd");
+        }catch (IllegalArgumentException e) {
+            assertThat(e).
+                    isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining("[ERROR]");
+        }
     }
 
 

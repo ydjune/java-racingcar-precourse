@@ -1,4 +1,4 @@
-package racingcar.functions;
+package racingcar.utils;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,7 +9,7 @@ import java.io.PrintStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ValidationTest {
+public class InputStringTest {
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
@@ -27,20 +27,20 @@ public class ValidationTest {
     @Test
     void 입력문자가_null인지확인(){
 
-        boolean result = ValidationFunction.validCarName("");
+        boolean result = InputString.isNull("");
         assertThat(result).isFalse();
     }
 
 
     @Test
     void 차이름이_5자_이상이면_false(){
-        boolean result = ValidationFunction.validLength("asdfasd");
+        boolean result = InputString.validLength("asdfasd");
         assertThat(result).isFalse();
     }
 
     @Test
     void 차이름이_5자_이상이면_Error출력(){
-        ValidationFunction.validLength("asdfasd");
+        InputString.validLength("asdfasd");
         assertThat(ERROR_MESSAGE).isEqualTo(outContent.toString());
     }
 }

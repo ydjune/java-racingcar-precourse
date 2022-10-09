@@ -1,7 +1,7 @@
 package racingcar.model;
 
 import org.junit.jupiter.api.Test;
-import racingcar.functions.ValidationFunction;
+import racingcar.utils.InputString;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public class CarsTest {
     @Test
     void 자동차이름을_입력했을떄_최소_두대이상인가(){
 
-        Cars cars = new Cars("pobi,woni");
+        Cars cars = new Cars(new InputString("pobi,woni"));
 
         List<Car> list = cars.splitCars(cars);
 
@@ -24,7 +24,7 @@ public class CarsTest {
     @Test
     void 자동차이름을_입력했을떄_최소_두대미만이면_에러(){
 
-        Cars cars = new Cars("pobi");
+        Cars cars = new Cars(new InputString("pobi"));
 
         try {
             List<Car> list = cars.splitCars(cars);

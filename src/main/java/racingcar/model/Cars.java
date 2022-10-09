@@ -1,6 +1,6 @@
 package racingcar.model;
 
-import racingcar.functions.ValidationFunction;
+import racingcar.utils.InputString;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +9,8 @@ public class Cars {
 
     List<Car> carsList;
     String inputCars;
-    public Cars(String strInputCars) {
-        this.inputCars = strInputCars;
+    public Cars(InputString strInputCars) {
+        this.inputCars = strInputCars.getStrValue();
         carsList = new ArrayList<>();
     }
 
@@ -23,7 +23,7 @@ public class Cars {
 
         this.carsList = cars.carsList;
         for (String carName : splitCar) {
-            Car car = new Car(carName);
+            Car car = new Car(new InputString(carName));
             carsList.add(car);
         }
 

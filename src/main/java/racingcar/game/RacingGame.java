@@ -1,10 +1,16 @@
 package racingcar.game;
 
+import racingcar.model.function.Function;
+import racingcar.model.function.ReadyToStart;
+
 public class RacingGame {
 
-    GameManager progress = new GameManager();
+    Function gameStart = new ReadyToStart();
+    GameManager progress = new GameManager(gameStart);
     public void start(){
-        progress.next();
+        while (progress.isPlay()) {
+            progress.next();
+        }
     }
 
 }

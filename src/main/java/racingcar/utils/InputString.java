@@ -1,16 +1,22 @@
 package racingcar.utils;
 
+import racingcar.game.GameManager;
+import racingcar.model.function.Function;
+import racingcar.model.function.ReadyToStart;
 import racingcar.view.io.OutputFunction;
 
 public class InputString {
 
-    public static final int MAX_CAR_NAME_LENGTH = 5;
-
     private String strValue;
     public InputString(String inputStr){
 
-        isNull(inputStr);
-        validLength(inputStr);
+        try{
+            isNull(inputStr);
+        }catch (IllegalArgumentException e){
+            Function gameRestart = new ReadyToStart();
+            GameManager gameManager = new GameManager(gameRestart);
+            gameManager.next();
+        }
 
         this.strValue = inputStr;
     }
@@ -18,22 +24,13 @@ public class InputString {
     public static boolean isNull(String input) {
 
         if ("".equals(input)) {
-            OutputFunction.print("[Error]");
-            return false;
+            OutputFunction.println("[Error]자동차이름을 입력해주세요");
+            throw new IllegalArgumentException("[Error]자동차이름을 입력해주세요");
         }
 
-        return true;
+        return false;
     }
 
-    public static boolean validLength(String carName) {
-        if (carName.length() > MAX_CAR_NAME_LENGTH) {
-            OutputFunction.print("[Error]");
-
-            return false;
-        }
-
-        return true;
-    }
 
     public String getStrValue() {
         return this.strValue;
